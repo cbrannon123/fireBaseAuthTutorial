@@ -10,7 +10,7 @@ adminForm.addEventListener('submit', (e) => {
     })
 })
 
-//set ruels for FB
+//set rules for FB
 //listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
@@ -67,6 +67,9 @@ signupForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close();
         signupForm.reset()
+        signupForm.querySelector('.error').innerHTML = '';
+    }).catch(err => {
+        signupForm.querySelector('.error').innerHTML = err.message;
     });
 });
 
@@ -92,5 +95,8 @@ loginForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset()
-    });
+        loginForm.querySelector('.error').innerHTML = '';
+    }).catch(err => {
+        loginForm.querySelector('.error').innerHTML = err.message;
+    })
 });
